@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json()); 
 
-const uri = "mongodb+srv://arshlank894:qQCXopPCgvfV1eeP@cluster0.mfwzofy.mongodb.net/Highway_Delite?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.MONGODB_URI;
 mongoose.connect(uri);
 const connection = mongoose.connection;
 connection.once('open', () => {
