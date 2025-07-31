@@ -9,22 +9,22 @@ const port = process.env.PORT || 5000;
 
 const allowedOrigins = [
   'https://post-your-ad.vercel.app', 
-  'http://localhost:3000'
+  'http://localhost:3000'            
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'));
     }
-    return callback(null, true);
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
+app.options('*', cors(corsOptions));
 
 app.use(cors(corsOptions));
 
