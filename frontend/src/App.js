@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // State for form fields
   const [formData, setFormData] = useState({
     property_type: '',
     bhk: '',
@@ -26,28 +25,20 @@ function App() {
     user_name: '',
   });
 
-  // State for form submission messages
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  // State for image previews
   const [imagePreviews, setImagePreviews] = useState([]);
 
-  // Ref for the hidden file input
   const fileInputRef = useRef(null);
 
-  // --- Effects ---
 
-  // Effect to clean up object URLs when the component unmounts to prevent memory leaks
   useEffect(() => {
     return () => {
       imagePreviews.forEach(preview => URL.revokeObjectURL(preview.url));
     };
-  }, [imagePreviews]); // This effect now depends on imagePreviews to run cleanup
+  }, [imagePreviews]);
 
-  // --- Handlers ---
-
-  // Handles changes for all standard form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -56,16 +47,13 @@ function App() {
     }));
   };
 
-  // Handles form submission to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
     setError('');
 
-    // NOTE: For a real application, you would use FormData to send both JSON and files.
-    // This example focuses on the frontend preview and sends only the JSON data.
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const apiUrl = (process.env.REACT_APP_API_URL || 'http://localhost:5000').replace(/\/$/, '');
       const response = await fetch(`${apiUrl}/api/ads`, {
         method: 'POST',
         headers: {
@@ -86,32 +74,27 @@ function App() {
     }
   };
 
-  // Triggers the hidden file input when the "Add Photo" button is clicked
   const handlePhotoUploadClick = () => {
     fileInputRef.current.click();
   };
 
-  // Creates and adds image previews when files are selected
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
     const newPreviews = [];
 
     files.forEach(file => {
-      // Ensure it's an image file
       if (file.type.startsWith('image/')) {
         newPreviews.push({
           url: URL.createObjectURL(file),
-          file: file // Keep the file object for potential upload
+          file: file
         });
       }
     });
 
     setImagePreviews(prevPreviews => {
       const combined = [...prevPreviews, ...newPreviews];
-      // Enforce the 20 photo limit
       if (combined.length > 20) {
         alert('You can only upload a maximum of 20 photos.');
-        // Clean up URLs for the files that were not added
         const excessPreviews = combined.slice(20);
         excessPreviews.forEach(p => URL.revokeObjectURL(p.url));
         return combined.slice(0, 20);
@@ -119,23 +102,16 @@ function App() {
       return combined;
     });
 
-    // Clear the input value to allow selecting the same file again
     e.target.value = null;
   };
 
-  // Removes an image preview and revokes its object URL
   const handleRemoveImage = (indexToRemove) => {
-    // Revoke the object URL of the removed image to free up memory
     URL.revokeObjectURL(imagePreviews[indexToRemove].url);
-    // Update the state to remove the image from the array
     setImagePreviews(prevPreviews =>
       prevPreviews.filter((_, index) => index !== indexToRemove)
     );
   };
 
-  // --- Render Helpers ---
-
-  // Helper function to render radio button groups
   const renderRadioGroup = (name, options) => (
     <div className="choice-group">
       {options.map(option => (
