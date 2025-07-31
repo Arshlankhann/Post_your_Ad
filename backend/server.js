@@ -10,24 +10,30 @@ const allowedOrigins = ['https://post-your-ad.vercel.app', 'http://localhost:300
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-    return callback(null, true);
-  }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow OPTIONS
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
-app.use(express.json()); 
+
+app.use(express.json());
+
 
 const uri = process.env.MONGO_URI;
-mongoose.connect(uri);
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
-});
+if (uri) {
+  mongoose.connect(uri)
+    .then(() => console.log("MongoDB database connection established successfully"))
+    .catch(err => console.error("MongoDB connection error:", err));
+} else {
+  console.error("MONGO_URI is not defined in the environment variables.");
+}
+
 
 const adRoutes = require('./routes/ad.routes');
 app.use('/api/ads', adRoutes);
