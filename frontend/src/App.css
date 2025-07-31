@@ -19,7 +19,6 @@
    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
  }
 
- /* Typography */
  h1 {
    text-align: center;
    font-size: 24px;
@@ -39,17 +38,14 @@
    text-transform: uppercase;
  }
 
- /* Form Section Styling */
  .form-section {
    border: 1px solid #dcdfe1;
    border-radius: 4px;
    padding: 24px 40px;
-   /* Increased horizontal padding */
    margin-bottom: 20px;
    padding-right: 40%;
  }
 
- /* Form Element Styling */
  .form-label {
    font-size: 14px;
    color: #406367;
@@ -67,7 +63,6 @@
    font-size: 16px;
    color: #002f34;
    box-sizing: border-box;
-   /* Ensures padding doesn't affect width */
  }
 
  .form-input:focus,
@@ -93,7 +88,6 @@
    margin-bottom: 0;
  }
 
- /* Custom Radio and Checkbox Buttons */
  .choice-group {
    display: flex;
    flex-wrap: wrap;
@@ -119,28 +113,22 @@
 
  .choice-group label.selected {
    background-color: #e9f2ff;
-   /* Light blue background for selected item */
-   /* border-color: #0d72ba; */
    border-width: 2px;
    padding: 7px 15px;
    border: 1px solid black;
-   /* Adjust padding to account for thicker border */
  }
 
  .choice-group label.selected span {
    color: #002f34;
-   /* Dark text for selected item */
    font-weight: 600;
  }
 
 
- /* Layout Helpers */
  .grid-container {
    display: grid;
    gap: 24px;
  }
 
- /* Specific Section Styles */
  .selected-category-section {
    margin-bottom: 24px;
  }
@@ -187,7 +175,6 @@
    padding-left: 32px;
  }
 
- /* Photo Upload Section */
  #photo-upload-input {
    display: none;
  }
@@ -271,7 +258,6 @@
    color: #9ca3af;
  }
 
- /* Review Details Section */
  .review-details {
    display: flex;
    align-items: flex-start;
@@ -305,7 +291,6 @@
    color: #002f34;
  }
 
- /* Post Button */
  .post-button-container {
    margin-top: 32px;
  }
@@ -327,13 +312,11 @@
    background-color: #001a1d;
  }
 
- /* Validation Styles */
  .error-message {
    color: #d93025;
    font-size: 12px;
    margin-top: 4px;
    display: none;
-   /* Hidden by default */
  }
 
  .form-group.has-error .form-label {

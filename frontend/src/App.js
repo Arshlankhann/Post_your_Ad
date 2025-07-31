@@ -129,7 +129,6 @@ function App() {
     </div>
   );
 
-  // --- Main Component Return ---
   return (
     <div className="container">
       <h1>Post your ad</h1>
@@ -139,7 +138,6 @@ function App() {
 
       <form id="ad-form" noValidate onSubmit={handleSubmit}>
         <div className="main-content">
-          {/* All form sections are included below */}
 
           <div className="selected-category-box">
             <div className="selected-category-section">
@@ -151,7 +149,6 @@ function App() {
 
           <div className="form-section">
             <h2>Include some details</h2>
-            {/* All form groups like Type, BHK, Bathrooms, etc. */}
             <div className="form-group">
               <label className="form-label">Type *</label>
               {renderRadioGroup('property_type', [
@@ -258,7 +255,6 @@ function App() {
             </div>
           </div>
 
-          {/* === UPDATED PHOTO UPLOAD SECTION === */}
           <div className="form-section">
             <h2>Upload up to 20 photos</h2>
             <input
@@ -270,7 +266,6 @@ function App() {
               accept="image/*"
             />
             <div className="photo-grid" id="photo-grid-container">
-              {/* The main upload button is always first */}
               <div className="photo-slot main-photo-upload" onClick={handlePhotoUploadClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -279,7 +274,6 @@ function App() {
                 <span>Add Photo</span>
               </div>
 
-              {/* Render the image previews */}
               {imagePreviews.map((preview, index) => (
                 <div key={preview.url} className="photo-slot image-preview">
                   <img src={preview.url} alt={`Preview ${index + 1}`} />
@@ -293,7 +287,6 @@ function App() {
                 </div>
               ))}
 
-              {/* Render the remaining placeholder slots */}
               {Array.from({ length: 19 - imagePreviews.length }).map((_, index) => (
                 <div key={`placeholder-${index}`} className="photo-slot placeholder-slot">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
