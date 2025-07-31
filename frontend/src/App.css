@@ -1,0 +1,359 @@
+ body {
+   font-family: 'Inter', sans-serif;
+   background-color: #f0f2f5;
+   margin: 0;
+   padding: 32px 0;
+   color: #002f34;
+ }
+
+ .container {
+   max-width: 896px;
+   margin: 0 auto;
+   padding: 0 16px;
+ }
+
+ .main-content {
+   background-color: #ffffff;
+   padding: 24px;
+   border-radius: 8px;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+ }
+
+ /* Typography */
+ h1 {
+   text-align: center;
+   font-size: 24px;
+   font-weight: 700;
+   color: #1f2937;
+   margin-top: 0;
+   margin-bottom: 24px;
+   text-transform: uppercase;
+ }
+
+ h2 {
+   font-size: 18px;
+   font-weight: 600;
+   color: #1f2937;
+   margin-top: 0;
+   margin-bottom: 24px;
+   text-transform: uppercase;
+ }
+
+ /* Form Section Styling */
+ .form-section {
+   border: 1px solid #dcdfe1;
+   border-radius: 4px;
+   padding: 24px 40px;
+   /* Increased horizontal padding */
+   margin-bottom: 20px;
+   padding-right: 40%;
+ }
+
+ /* Form Element Styling */
+ .form-label {
+   font-size: 14px;
+   color: #406367;
+   margin-bottom: 8px;
+   display: block;
+ }
+
+ .form-input,
+ .form-textarea,
+ .form-select {
+   width: 100%;
+   border: 1px solid #8a989a;
+   border-radius: 4px;
+   padding: 12px;
+   font-size: 16px;
+   color: #002f34;
+   box-sizing: border-box;
+   /* Ensures padding doesn't affect width */
+ }
+
+ .form-input:focus,
+ .form-textarea:focus,
+ .form-select:focus {
+   outline: none;
+   border-color: #002f34;
+   box-shadow: 0 0 0 2px rgba(0, 47, 52, 0.2);
+ }
+
+ .form-hint {
+   font-size: 12px;
+   color: #8a989a;
+   margin-top: 4px;
+   text-align: right;
+ }
+
+ .form-group {
+   margin-bottom: 24px;
+ }
+
+ .form-group:last-child {
+   margin-bottom: 0;
+ }
+
+ /* Custom Radio and Checkbox Buttons */
+ .choice-group {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px;
+ }
+
+ .choice-group label {
+   display: inline-flex;
+   align-items: center;
+   padding: 8px 16px;
+   border: 1px solid #8a989a;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 14px;
+   transition: all 0.2s ease-in-out;
+   background-color: #fff;
+ }
+
+ .choice-group input[type="radio"],
+ .choice-group input[type="checkbox"] {
+   display: none;
+ }
+
+ .choice-group label.selected {
+   background-color: #e9f2ff;
+   /* Light blue background for selected item */
+   /* border-color: #0d72ba; */
+   border-width: 2px;
+   padding: 7px 15px;
+   border: 1px solid black;
+   /* Adjust padding to account for thicker border */
+ }
+
+ .choice-group label.selected span {
+   color: #002f34;
+   /* Dark text for selected item */
+   font-weight: 600;
+ }
+
+
+ /* Layout Helpers */
+ .grid-container {
+   display: grid;
+   gap: 24px;
+ }
+
+ /* Specific Section Styles */
+ .selected-category-section {
+   margin-bottom: 24px;
+ }
+
+ .selected-category-box {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 16px;
+   border: 1px solid #d1d5db;
+   border-radius: 4px;
+ }
+
+ .selected-category-box span {
+   color: #4b5563;
+ }
+
+ .selected-category-box a {
+   color: #2563eb;
+   font-weight: 600;
+   font-size: 16px;
+   text-decoration: none;
+   border-bottom: 1px solid #2563eb;
+   margin-left: 10px;
+ }
+
+ .selected-category-box a:hover {
+   text-decoration: underline;
+ }
+
+ .price-input-container {
+   position: relative;
+ }
+
+ .price-symbol {
+   position: absolute;
+   top: 50%;
+   left: 12px;
+   transform: translateY(-50%);
+   color: #4b5563;
+ }
+
+ .price-input {
+   padding-left: 32px;
+ }
+
+ /* Photo Upload Section */
+ #photo-upload-input {
+   display: none;
+ }
+
+ .photo-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+   gap: 16px;
+ }
+
+ .photo-slot {
+   aspect-ratio: 1 / 1;
+   border: 1px solid #d1d5db;
+   border-radius: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #9ca3af;
+   cursor: pointer;
+   transition: background-color 0.2s ease;
+   position: relative;
+   overflow: hidden;
+   background-color: #f9fafb;
+ }
+
+ .photo-slot:hover {
+   background-color: #f3f4f6;
+ }
+
+ .photo-slot img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+
+ .photo-slot .remove-photo-btn {
+   position: absolute;
+   top: 4px;
+   right: 4px;
+   width: 20px;
+   height: 20px;
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   border: none;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 12px;
+   line-height: 1;
+   cursor: pointer;
+   opacity: 0;
+   transition: opacity 0.2s ease;
+ }
+
+ .photo-slot:hover .remove-photo-btn {
+   opacity: 1;
+ }
+
+ .main-photo-upload {
+   border: 2px solid #002f34;
+   flex-direction: column;
+   color: #002f34;
+   background-color: #fff;
+ }
+
+ .main-photo-upload svg {
+   width: 32px;
+   height: 32px;
+   margin-bottom: 4px;
+ }
+
+ .main-photo-upload span {
+   font-size: 14px;
+   font-weight: 500;
+ }
+
+ .placeholder-slot svg {
+   width: 28px;
+   height: 28px;
+   color: #9ca3af;
+ }
+
+ /* Review Details Section */
+ .review-details {
+   display: flex;
+   align-items: flex-start;
+ }
+
+ .review-details img {
+   width: 64px;
+   height: 64px;
+   border-radius: 50%;
+   margin-right: 16px;
+   margin-top: 16px;
+ }
+
+ .review-details-text {
+   flex: 1;
+ }
+
+ .review-details-text .form-group {
+   margin-bottom: 8px;
+ }
+
+ .review-details-text p {
+   font-size: 14px;
+   color: #6b7280;
+   margin: 0;
+   padding-bottom: 5px;
+ }
+
+ .phone-number {
+   font-weight: 600;
+   color: #002f34;
+ }
+
+ /* Post Button */
+ .post-button-container {
+   margin-top: 32px;
+ }
+
+ .post-button {
+   width: 20%;
+   background-color: #002f34;
+   color: white;
+   font-weight: 700;
+   padding: 16px;
+   border-radius: 4px;
+   border: none;
+   cursor: pointer;
+   font-size: 16px;
+   transition: background-color 0.3s ease;
+ }
+
+ .post-button:hover {
+   background-color: #001a1d;
+ }
+
+ /* Validation Styles */
+ .error-message {
+   color: #d93025;
+   font-size: 12px;
+   margin-top: 4px;
+   display: none;
+   /* Hidden by default */
+ }
+
+ .form-group.has-error .form-label {
+   color: #d93025;
+   font-weight: 600;
+ }
+
+ .form-input.has-error,
+ .form-select.has-error,
+ .form-textarea.has-error {
+   border-color: #d93025;
+ }
+
+
+ @media (min-width: 768px) {
+   .main-content {
+     padding: 32px;
+   }
+
+   .grid-container-halves {
+     grid-template-columns: repeat(1, 1fr);
+   }
+ }
