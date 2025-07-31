@@ -117,6 +117,9 @@
    padding: 7px 15px;
    border: 1px solid black;
  }
+ .choice-group label:hover{
+  background-color: #d9ebfe;
+ }
 
  .choice-group label.selected span {
    color: #002f34;
