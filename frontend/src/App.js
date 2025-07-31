@@ -318,7 +318,7 @@ function App() {
           <div className="form-section">
             <h2>Review your details</h2>
             <div className="review-details">
-              <img src="https://placehold.co/64x64/002f34/ffffff?text=A" alt="User Avatar" />
+              <img src="https://www.google.com/imgres?q=boy%20images%20cartoon&imgurl=https%3A%2F%2Fimg.freepik.com%2Fpremium-vector%2Fboy-cartoon_487647-251.jpg&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Fpremium-vector%2Fboy-cartoon_31829191.htm&docid=X6M4a6v7-io3GM&tbnid=tHBIn6kxF1tDhM&vet=12ahUKEwiZpN_em-eOAxUwRmcHHQ2fMagQM3oECHEQAA..i&w=626&h=626&hcb=2&ved=2ahUKEwiZpN_em-eOAxUwRmcHHQ2fMagQM3oECHEQAA" alt="User Avatar" />
               <div className="review-details-text">
                 <div className="form-group">
                   <label htmlFor="user_name" className="form-label">Name *</label>
