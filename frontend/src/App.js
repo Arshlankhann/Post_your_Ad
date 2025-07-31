@@ -35,9 +35,9 @@ function App() {
 
   // Ref for the hidden file input
   const fileInputRef = useRef(null);
-  
+
   // --- Effects ---
-  
+
   // Effect to clean up object URLs when the component unmounts to prevent memory leaks
   useEffect(() => {
     return () => {
@@ -65,7 +65,8 @@ function App() {
     // NOTE: For a real application, you would use FormData to send both JSON and files.
     // This example focuses on the frontend preview and sends only the JSON data.
     try {
-      const response = await fetch('/api/ads', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/ads`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -184,79 +185,79 @@ function App() {
                 { value: 'house_villa', label: 'House & Villa' }
               ])}
             </div>
-            
+
             <div className="form-group">
-                <label className="form-label">BHK *</label>
-                {renderRadioGroup('bhk', [
-                    { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { value: '4+', label: '4+' }
-                ])}
+              <label className="form-label">BHK *</label>
+              {renderRadioGroup('bhk', [
+                { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { value: '4+', label: '4+' }
+              ])}
             </div>
             <div className="form-group">
-                <label className="form-label">Bathrooms *</label>
-                {renderRadioGroup('bathrooms', [
-                    { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { value: '4+', label: '4+' }
-                ])}
+              <label className="form-label">Bathrooms *</label>
+              {renderRadioGroup('bathrooms', [
+                { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { value: '4+', label: '4+' }
+              ])}
             </div>
             <div className="form-group">
-                <label className="form-label">Furnishing *</label>
-                {renderRadioGroup('furnishing', [
-                    { value: 'furnished', label: 'Furnished' }, { value: 'semifurnished', label: 'Semi-Furnished' }, { value: 'unfurnished', label: 'Unfurnished' }
-                ])}
+              <label className="form-label">Furnishing *</label>
+              {renderRadioGroup('furnishing', [
+                { value: 'furnished', label: 'Furnished' }, { value: 'semifurnished', label: 'Semi-Furnished' }, { value: 'unfurnished', label: 'Unfurnished' }
+              ])}
             </div>
             <div className="form-group">
-                <label className="form-label">Project Status *</label>
-                {renderRadioGroup('project_status', [
-                    { value: 'new_launch', label: 'New Launch' }, { value: 'ready_to_move', label: 'Ready to Move' }, { value: 'under_construction', label: 'Under Construction' }
-                ])}
+              <label className="form-label">Project Status *</label>
+              {renderRadioGroup('project_status', [
+                { value: 'new_launch', label: 'New Launch' }, { value: 'ready_to_move', label: 'Ready to Move' }, { value: 'under_construction', label: 'Under Construction' }
+              ])}
             </div>
             <div className="form-group">
-                <label className="form-label">Listed By *</label>
-                {renderRadioGroup('listed_by', [
-                    { value: 'builder', label: 'Builder' }, { value: 'dealer', label: 'Dealer' }, { value: 'owner', label: 'Owner' }
-                ])}
+              <label className="form-label">Listed By *</label>
+              {renderRadioGroup('listed_by', [
+                { value: 'builder', label: 'Builder' }, { value: 'dealer', label: 'Dealer' }, { value: 'owner', label: 'Owner' }
+              ])}
             </div>
             <div className="grid-container grid-container-halves form-group">
-                <div className="form-group">
-                    <label htmlFor="super_builtup_area" className="form-label">Super Builtup area (ft²) *</label>
-                    <input type="number" id="super_builtup_area" name="super_builtup_area" className="form-input" value={formData.super_builtup_area} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="carpet_area" className="form-label">Carpet Area (ft²) *</label>
-                    <input type="number" id="carpet_area" name="carpet_area" className="form-input" value={formData.carpet_area} onChange={handleChange} />
-                </div>
+              <div className="form-group">
+                <label htmlFor="super_builtup_area" className="form-label">Super Builtup area (ft²) *</label>
+                <input type="number" id="super_builtup_area" name="super_builtup_area" className="form-input" value={formData.super_builtup_area} onChange={handleChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="carpet_area" className="form-label">Carpet Area (ft²) *</label>
+                <input type="number" id="carpet_area" name="carpet_area" className="form-input" value={formData.carpet_area} onChange={handleChange} />
+              </div>
             </div>
             <div className="form-group">
-                <label htmlFor="maintenance" className="form-label">Maintenance (Monthly) *</label>
-                <input type="number" id="maintenance" name="maintenance" className="form-input" value={formData.maintenance} onChange={handleChange} />
+              <label htmlFor="maintenance" className="form-label">Maintenance (Monthly) *</label>
+              <input type="number" id="maintenance" name="maintenance" className="form-input" value={formData.maintenance} onChange={handleChange} />
             </div>
             <div className="grid-container grid-container-halves form-group">
-                <div className="form-group">
-                    <label htmlFor="total_floors" className="form-label">Total Floors *</label>
-                    <input type="number" id="total_floors" name="total_floors" className="form-input" value={formData.total_floors} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="floor_no" className="form-label">Floor No *</label>
-                    <input type="number" id="floor_no" name="floor_no" className="form-input" value={formData.floor_no} onChange={handleChange} />
-                </div>
+              <div className="form-group">
+                <label htmlFor="total_floors" className="form-label">Total Floors *</label>
+                <input type="number" id="total_floors" name="total_floors" className="form-input" value={formData.total_floors} onChange={handleChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="floor_no" className="form-label">Floor No *</label>
+                <input type="number" id="floor_no" name="floor_no" className="form-input" value={formData.floor_no} onChange={handleChange} />
+              </div>
             </div>
             <div className="form-group">
-                <label className="form-label">Car Parking *</label>
-                {renderRadioGroup('parking', [
-                    { value: '0', label: '0' }, { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '3+', label: '3+' }
-                ])}
+              <label className="form-label">Car Parking *</label>
+              {renderRadioGroup('parking', [
+                { value: '0', label: '0' }, { value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '3+', label: '3+' }
+              ])}
             </div>
             <div className="form-group">
-                <label htmlFor="facing" className="form-label">Facing *</label>
-                <select id="facing" name="facing" className="form-select" value={formData.facing} onChange={handleChange}>
-                    <option value="">Select</option>
-                    <option>East</option> <option>West</option> <option>North</option>
-                    <option>South</option> <option>North-East</option> <option>North-West</option>
-                    <option>South-East</option> <option>South-West</option>
-                </select>
+              <label htmlFor="facing" className="form-label">Facing *</label>
+              <select id="facing" name="facing" className="form-select" value={formData.facing} onChange={handleChange}>
+                <option value="">Select</option>
+                <option>East</option> <option>West</option> <option>North</option>
+                <option>South</option> <option>North-East</option> <option>North-West</option>
+                <option>South-East</option> <option>South-West</option>
+              </select>
             </div>
             <div className="form-group">
-                <label htmlFor="project_name" className="form-label">Project Name</label>
-                <input type="text" id="project_name" name="project_name" className="form-input" value={formData.project_name} onChange={handleChange} />
+              <label htmlFor="project_name" className="form-label">Project Name</label>
+              <input type="text" id="project_name" name="project_name" className="form-input" value={formData.project_name} onChange={handleChange} />
             </div>
             <div className="form-group">
               <label htmlFor="ad-title" className="form-label">Ad title *</label>
@@ -301,7 +302,7 @@ function App() {
                 </svg>
                 <span>Add Photo</span>
               </div>
-              
+
               {/* Render the image previews */}
               {imagePreviews.map((preview, index) => (
                 <div key={preview.url} className="photo-slot image-preview">
@@ -331,32 +332,32 @@ function App() {
           <div className="form-section">
             <h2>Confirm your location</h2>
             <div className="form-group">
-                <label htmlFor="state" className="form-label">State *</label>
-                <select id="state" name="state" className="form-select" value={formData.state} onChange={handleChange} required>
-                    <option value="">Select State</option>
-                    <option>Maharashtra</option>
-                    <option>Delhi</option>
-                    <option>Karnataka</option>
-                </select>
+              <label htmlFor="state" className="form-label">State *</label>
+              <select id="state" name="state" className="form-select" value={formData.state} onChange={handleChange} required>
+                <option value="">Select State</option>
+                <option>Maharashtra</option>
+                <option>Delhi</option>
+                <option>Karnataka</option>
+              </select>
             </div>
             <div className="form-group">
-                <label htmlFor="city" className="form-label">City / Neighbourhood *</label>
-                <input type="text" id="city" name="city" className="form-input" value={formData.city} onChange={handleChange} required />
+              <label htmlFor="city" className="form-label">City / Neighbourhood *</label>
+              <input type="text" id="city" name="city" className="form-input" value={formData.city} onChange={handleChange} required />
             </div>
           </div>
 
           <div className="form-section">
             <h2>Review your details</h2>
             <div className="review-details">
-                <img src="https://placehold.co/64x64/002f34/ffffff?text=A" alt="User Avatar" />
-                <div className="review-details-text">
-                    <div className="form-group">
-                        <label htmlFor="user_name" className="form-label">Name *</label>
-                        <input type="text" id="user_name" name="user_name" className="form-input" value={formData.user_name} onChange={handleChange} required />
-                    </div>
-                    <p>Your phone number</p>
-                    <p className="phone-number">+919119943301</p>
+              <img src="https://placehold.co/64x64/002f34/ffffff?text=A" alt="User Avatar" />
+              <div className="review-details-text">
+                <div className="form-group">
+                  <label htmlFor="user_name" className="form-label">Name *</label>
+                  <input type="text" id="user_name" name="user_name" className="form-input" value={formData.user_name} onChange={handleChange} required />
                 </div>
+                <p>Your phone number</p>
+                <p className="phone-number">+919119943301</p>
+              </div>
             </div>
           </div>
 
