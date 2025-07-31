@@ -8,8 +8,8 @@ const port = process.env.PORT || 5000;
 
 
 const allowedOrigins = [
-  'https://post-your-ad.vercel.app', 
-  'http://localhost:3000'            
+  'https://post-your-ad.vercel.app',
+  'http://localhost:3000'
 ];
 
 const corsOptions = {
@@ -26,17 +26,17 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
-
 const uri = "mongodb+srv://arshlank894:qQCXopPCgvfV1eeP@cluster0.mfwzofy.mongodb.net/Highway_Delite?retryWrites=true&w=majority&appName=Cluster0";
-if (uri) {
-  mongoose.connect(uri)
-    .then(() => console.log("MongoDB database connection established successfully"))
-    .catch(err => console.error("MongoDB connection error:", err));
-} else {
-  console.error("MONGO_URI is not defined in the environment variables.");
+
+if (mongoose.connection.readyState !== 1) {
+  if (uri) {
+    mongoose.connect(uri)
+      .then(() => console.log("MongoDB database connection established successfully"))
+      .catch(err => console.error("MongoDB connection error:", err));
+  } else {
+    console.error("MONGO_URI is not defined in the environment variables.");
+  }
 }
 
 const adRoutes = require('./routes/ad.routes');
