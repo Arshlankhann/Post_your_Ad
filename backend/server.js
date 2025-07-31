@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-const uri = process.env.MONGO_URI;
+const uri = "mongodb+srv://arshlank894:qQCXopPCgvfV1eeP@cluster0.mfwzofy.mongodb.net/Highway_Delite?retryWrites=true&w=majority&appName=Cluster0";
 if (uri) {
   mongoose.connect(uri)
     .then(() => console.log("MongoDB database connection established successfully"))
