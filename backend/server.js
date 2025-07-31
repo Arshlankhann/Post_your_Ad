@@ -13,18 +13,17 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'));
+      callback(new Error('Not allowed by CORS'));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
 };
-app.options('*', cors(corsOptions));
 
 app.use(cors(corsOptions));
 
@@ -40,11 +39,7 @@ if (uri) {
   console.error("MONGO_URI is not defined in the environment variables.");
 }
 
-
 const adRoutes = require('./routes/ad.routes');
 app.use('/api/ads', adRoutes);
 
-
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});
+module.exports = app;
