@@ -3,26 +3,25 @@ const Ad = require('../models/ad.model');
 
 router.post('/', async (req, res) => {
     try {
-        const requiredFields = [
-            'property_type', 'bhk', 'bathrooms', 'furnishing', 'project_status',
-            'listed_by', 'super_builtup_area', 'carpet_area', 'maintenance',
-            'total_floors', 'floor_no', 'parking', 'facing', 'ad_title',
-            'description', 'price', 'state', 'city', 'user_name'
-        ];
-
-        for (const field of requiredFields) {
-            if (!req.body[field]) {
-                return res.status(400).json({ msg: `Please enter the ${field.replace('_', ' ')}` });
-            }
-        }
-
         const newAd = new Ad(req.body);
-        const savedAd = await newAd.save();
+        
+        const savedAd = await newAd.save(); 
+        
         res.status(201).json({ msg: 'Ad posted successfully!', ad: savedAd });
 
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+        console.error('Error creating ad:', err); 
+
+        if (err.name === 'ValidationError') {
+            const messages = Object.values(err.errors).map(val => val.message);
+            
+            return res.status(400).json({
+                msg: 'Validation Error. Please check your input data.',
+                errors: messages
+            });
+        }
+
+        res.status(500).json({ msg: 'A server error occurred. Please try again later.' });
     }
 });
 
